@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import MyComponent from './MyComponent';
+
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOn: true
+      clicks: 0,
+      show: true
     };
   }
-  toggle = () => {
-    this.setState({
-      isOn: !this.state.isOn
-    })
+  
+  IncrementItem = () => {
+    this.setState({clicks: this.state.clicks + 1 });
+  }
+  DecreaseItem = () => {
+    this.setState({ clicks: this.state.clicks - 1 });
+  }
+  ToggleClick = () => {
+    this.setState({ show: !this.state.show});
   }
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-          <MyComponent name="aji"/>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button onClick={this.toggle}> 
-          {this.state.isOn ? 'on' : 'off'}
+      <div>
+        <button onClick={this.IncrementItem}>Cick to IncrementItem by 1</button>
+        <button onClick={this.DecreaseItem}>Cick to IncrementItem by 1</button>
+        <button onClick={this.ToggleClick}>
+          { this.state.show ? 'Hide number' : 'Show number' }
         </button>
+        { this.state.show ? <h2>{ this.state.clicks }</h2> : '' }
       </div>
     );
   }
